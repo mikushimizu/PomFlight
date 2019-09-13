@@ -25,7 +25,7 @@ public class JoyconReader : MonoBehaviour
 
 	private void Start()
 	{
-	//[pilkul] インデントサボりチンポスキーじゃん
+	//[pilkul] インデントサボりじゃん
 		SetControllers();
         countL = 0;
         countR = 0;
