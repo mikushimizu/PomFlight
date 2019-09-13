@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class JoyconReader : MonoBehaviour
 {
+//[pilkul] 行の開始地点がずれてるね。インデントって知ってる？ねえ？ん？
+	//[pilkul] staticはなるべく使わないというスタンスで
 	private static readonly Joycon.Button[] m_buttons =
 		Enum.GetValues(typeof(Joycon.Button)) as Joycon.Button[];
-
+	//[pilkul] m_ の意味わかってるか？コピペか？バレバレなんだよなぁ
 	private List<Joycon> m_joycons;
 	private Joycon m_joyconL;
 	private Joycon m_joyconR;
@@ -16,11 +18,14 @@ public class JoyconReader : MonoBehaviour
 	private Joycon.Button? m_pressedButtonR;
     public static int countL;
     public static int countR;
+    
+    //[pilkul] 配列じゃダメなんか
     public Player player1;
     public Player player2;
 
 	private void Start()
 	{
+	//[pilkul] インデントサボりチンポスキーじゃん
 		SetControllers();
         countL = 0;
         countR = 0;
@@ -30,7 +35,8 @@ public class JoyconReader : MonoBehaviour
 	{
 		m_pressedButtonL = null;
 		m_pressedButtonR = null;
-
+		
+		//[pilkul] {}の省略はエラーの温床になりがちなのでサボらないで
 		if (m_joycons == null || m_joycons.Count <= 0) return;
 
 		SetControllers();
@@ -49,10 +55,12 @@ public class JoyconReader : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
+			//[pilkul] 数字の直打ちはなるべく避ける、変数を1個作るかコメントをつけて数字の意味がわかるようにする
 			m_joyconL.SetRumble(160, 320, 0.6f, 200);
 		}
 		if (Input.GetKeyDown(KeyCode.X))
 		{
+			//[pilkul] 数字の直打ちはなるべく避ける、変数を1個作るかコメントをつけて数字の意味がわかるようにする
 			m_joyconR.SetRumble(160, 320, 0.6f, 200);
 		}
 	}
@@ -60,6 +68,7 @@ public class JoyconReader : MonoBehaviour
 	private void OnGUI()
 	{
 		var style = GUI.skin.GetStyle("label");
+		//[pilkul] 数字の直打ちはなるべく避ける、変数を1個作るかコメントをつけて数字の意味がわかるようにする
 		style.fontSize = 24;
 
 		if (m_joycons == null || m_joycons.Count <= 0)
