@@ -14,13 +14,17 @@ public class JoyconReader : MonoBehaviour
 	private Joycon m_joyconR;
 	private Joycon.Button? m_pressedButtonL;
 	private Joycon.Button? m_pressedButtonR;
-    public static int countL = 0;
-    public static int countR = 0;
+    public static int countL;
+    public static int countR;
+    public Player player1;
+    public Player player2;
 
 	private void Start()
 	{
 		SetControllers();
-	}
+        countL = 0;
+        countR = 0;
+    }
 
 	private void Update()
 	{
@@ -96,19 +100,22 @@ public class JoyconReader : MonoBehaviour
 			GUILayout.Label(string.Format("スティック：({0}, {1})", stick[0], stick[1]));
 			GUILayout.Label("ジャイロ：" + gyro);
 			GUILayout.Label("加速度：" + accel);
-            if(accel.x >= 1.0f)
+            if(accel.x >= 3.0f)
             {
                 switch (name)
                 {
                     case "Joy-Con (L)":
                         countL++;
+                        player1.gameObject.GetComponent<Player>().AddForce();
                         break;
 
                     case "Joy-Con (R)":
                         countR++;
+                        player2.gameObject.GetComponent<Player>().AddForce();
                         break;
                 }
             }
+            Debug.Log("countL:" + countL + ", countR:" + countR);
             GUILayout.Label("傾き：" + orientation);
 			GUILayout.EndVertical();
 		}
