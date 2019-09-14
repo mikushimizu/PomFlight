@@ -10,7 +10,10 @@ public class JoyconReader : MonoBehaviour
 	//[pilkul] staticはなるべく使わないというスタンスで
 	private static readonly Joycon.Button[] m_buttons =
 		Enum.GetValues(typeof(Joycon.Button)) as Joycon.Button[];
+<<<<<<< Updated upstream
 	//[pilkul] m_ の意味わかってるか？コピペか？バレバレなんだよなぁ
+=======
+>>>>>>> Stashed changes
 	private List<Joycon> m_joycons;
 	private Joycon m_joyconL;
 	private Joycon m_joyconR;
