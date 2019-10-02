@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public float thrust;
-    public Rigidbody rb;
-    public static float player1Height;
-    public static float player2Height;
+    private float thrust;
+    private Rigidbody rb;
+    private float height;
+    
+    public float Height
+    {
+        get { return height; }
+        set { height = value; }
+    }
 
     void Start () {
         thrust = 10f;
@@ -18,10 +23,18 @@ public class Player : MonoBehaviour {
         switch(gameObject.name)
         {
             case "Player1":
-                player1Height = Mathf.Floor(gameObject.transform.position.y);
+                Height = Mathf.Floor(gameObject.transform.position.y);
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    AddForce();
+                }
                 break;
             case "Player2":
-                player2Height = Mathf.Floor(gameObject.transform.position.y);
+                Height = Mathf.Floor(gameObject.transform.position.y);
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    AddForce();
+                }
                 break;
         }
     }

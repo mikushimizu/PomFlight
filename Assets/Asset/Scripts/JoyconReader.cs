@@ -6,14 +6,13 @@ using UnityEngine;
 
 public class JoyconReader : MonoBehaviour
 {
-//[pilkul] 行の開始地点がずれてるね。インデントって知ってる？ねえ？ん？
-	//[pilkul] staticはなるべく使わないというスタンスで
-	private static readonly Joycon.Button[] m_buttons =
+    //[pilkul] 行の開始地点がずれてるね。インデントって知ってる？ねえ？ん？
+    //[pilkul] staticはなるべく使わないというスタンスで
+    private static readonly Joycon.Button[] m_buttons =
 		Enum.GetValues(typeof(Joycon.Button)) as Joycon.Button[];
-<<<<<<< Updated upstream
-	//[pilkul] m_ の意味わかってるか？コピペか？バレバレなんだよなぁ
-=======
->>>>>>> Stashed changes
+    //Updated upstream
+    //[pilkul] m_ の意味わかってるか？コピペか？バレバレなんだよなぁ
+    //Stashed changes
 	private List<Joycon> m_joycons;
 	private Joycon m_joyconL;
 	private Joycon m_joyconR;
@@ -38,9 +37,11 @@ public class JoyconReader : MonoBehaviour
 	{
 		m_pressedButtonL = null;
 		m_pressedButtonR = null;
-		
-		//[pilkul] {}の省略はエラーの温床になりがちなのでサボらないで
-		if (m_joycons == null || m_joycons.Count <= 0) return;
+
+        if (m_joycons == null || m_joycons.Count <= 0)
+        {
+            return;
+        }
 
 		SetControllers();
 
@@ -112,7 +113,7 @@ public class JoyconReader : MonoBehaviour
 			GUILayout.Label(string.Format("スティック：({0}, {1})", stick[0], stick[1]));
 			GUILayout.Label("ジャイロ：" + gyro);
 			GUILayout.Label("加速度：" + accel);
-            if(accel.x >= 3.0f)
+            if(accel.x >= 3.0f) //加速度が3.0f以上のときジョイコンをしっかり振ったと判定
             {
                 switch (name)
                 {
@@ -127,6 +128,7 @@ public class JoyconReader : MonoBehaviour
                         break;
                 }
             }
+
             Debug.Log("countL:" + countL + ", countR:" + countR);
             GUILayout.Label("傾き：" + orientation);
 			GUILayout.EndVertical();
