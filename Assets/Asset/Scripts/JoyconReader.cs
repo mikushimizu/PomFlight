@@ -13,16 +13,18 @@ public class JoyconReader : MonoBehaviour
 	private Joycon m_joyconR;
 	private Joycon.Button? m_pressedButtonL;
 	private Joycon.Button? m_pressedButtonR;
-    public static int countL;
-    public static int countR;
+    public static int v_countL;
+    public static int v_countR;
+    public static int h_countL;
+    public static int h_countR;
 
     public Player[] player = new Player[2];
 
 	private void Start()
 	{
 		SetControllers();
-        countL = 0;
-        countR = 0;
+        v_countL = 0;
+        v_countR = 0;
     }
 
 	private void Update()
@@ -107,18 +109,16 @@ public class JoyconReader : MonoBehaviour
                 switch (name)
                 {
                     case "Joy-Con (L)":
-                    countL++;
-                    player[0].gameObject.GetComponent<Player>().AddForce();
-                    break;
+                        v_countL++;
+                        player[0].gameObject.GetComponent<Player>().AddForce();
+                        break;
 
                     case "Joy-Con (R)":
-                    countR++;
-                    player[1].gameObject.GetComponent<Player>().AddForce();
-                    break;
+                        v_countR++;
+                        player[1].gameObject.GetComponent<Player>().AddForce();
+                        break;
                 }
             }
-
-            Debug.Log("countL:" + countL + ", countR:" + countR);
             GUILayout.Label("傾き：" + orientation);
 			GUILayout.EndVertical();
 		}
