@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class StartBar : MonoBehaviour {
     private Slider slider;
     private int[] count = new int [2];
-    private bool[] isAble = new bool[2];
+    public static bool[] isAble = new bool[2];
 
 	void Start () {
         slider = GetComponent<Slider>();
@@ -46,6 +46,5 @@ public class StartBar : MonoBehaviour {
                 }
                 break;
         }
-        
 	}
 }
