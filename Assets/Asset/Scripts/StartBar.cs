@@ -1,0 +1,51 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class StartBar : MonoBehaviour {
+    private Slider slider;
+    private int[] count = new int [2];
+    private bool[] isAble = new bool[2];
+
+	void Start () {
+        slider = GetComponent<Slider>();
+        for(int i=0; i<count.Length; i++) {
+            count[i] = 0;
+            isAble[i] = false;
+        }
+	}
+	
+	void Update () {
+        switch (gameObject.name)
+        {
+            case "StartBar1":
+                count[0] = JoyconReader.v_count[0];
+                slider.value = count[0];
+                if (slider.value >= slider.maxValue)
+                {
+                    isAble[0] = true;
+                }
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    JoyconReader.v_count[0]++;
+                }
+                break;
+
+
+            case "StartBar2":
+                count[1] = JoyconReader.v_count[1];
+                slider.value = count[1];
+                if (slider.value >= slider.maxValue)
+                {
+                    isAble[1] = true;
+                }
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    JoyconReader.v_count[1]++;
+                }
+                break;
+        }
+        
+	}
+}

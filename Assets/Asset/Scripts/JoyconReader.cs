@@ -13,8 +13,7 @@ public class JoyconReader : MonoBehaviour
 	private Joycon m_joyconR;
 	private Joycon.Button? m_pressedButtonL;
 	private Joycon.Button? m_pressedButtonR;
-    public static int v_countL;
-    public static int v_countR;
+    public static int[] v_count = new int [2];
     public static int h_countL;
     public static int h_countR;
 
@@ -23,8 +22,10 @@ public class JoyconReader : MonoBehaviour
 	private void Start()
 	{
 		SetControllers();
-        v_countL = 0;
-        v_countR = 0;
+        for(int i=0; i<v_count.Length; i++)
+        {
+            v_count[i] = 0;
+        }
     }
 
 	private void Update()
@@ -59,7 +60,7 @@ public class JoyconReader : MonoBehaviour
 		{
 			m_joyconR.SetRumble(160, 320, 0.6f, 200);
 		}
-	}
+    }
 
 	private void OnGUI()
 	{
@@ -109,12 +110,12 @@ public class JoyconReader : MonoBehaviour
                 switch (name)
                 {
                     case "Joy-Con (L)":
-                        v_countL++;
+                        v_count[0]++;
                         player[0].gameObject.GetComponent<Player>().AddForce();
                         break;
 
                     case "Joy-Con (R)":
-                        v_countR++;
+                        v_count[1]++;
                         player[1].gameObject.GetComponent<Player>().AddForce();
                         break;
                 }
