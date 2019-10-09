@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class MainUIManager : MonoBehaviour {
     public Text[] heightText = new Text [2];
     public Text[] starScoreText = new Text[2];
     public Text timer;
@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour {
     public static float second;
 
     void Start () {
-        second = 120;
+        second = 600;
         for(int i = 0; i < player.Length; i++)
         {
             playerCs[i] = player[i].GetComponent<Player>();

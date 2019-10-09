@@ -13,7 +13,7 @@ public class ScoreStar : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Player>().StarScore = point;
+            collision.gameObject.GetComponent<Player>().StarScore += point;
             Destroy(gameObject);
         }
     }
