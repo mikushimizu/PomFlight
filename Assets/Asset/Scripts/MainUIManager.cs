@@ -12,7 +12,7 @@ public class MainUIManager : MonoBehaviour {
     public static float second;
 
     void Start () {
-        second = 600;
+        second = 3660;
         for(int i = 0; i < player.Length; i++)
         {
             playerCs[i] = player[i].GetComponent<Player>();

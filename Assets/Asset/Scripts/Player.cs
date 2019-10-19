@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-    private float thrust;
+    public float thrust;
     public float normalSpeed;
     private Rigidbody rb;
     private float height;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
     }
 
     void Start () {
-        thrust = 10f;
+        thrust = 1f;
         normalSpeed = 0.05f;
         rb = GetComponent<Rigidbody>();
     }
