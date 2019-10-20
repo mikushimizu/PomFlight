@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
     public float thrust;
     public float normalSpeed;
+    public float attackSpeed;
     private Rigidbody rb;
     private float height;
     private int starScore;
+    private int count;
+
 
     public float Height
     {
@@ -24,37 +27,83 @@ public class Player : MonoBehaviour {
     void Start () {
         thrust = 1f;
         normalSpeed = 0.05f;
+        attackSpeed = 0.00f;
         rb = GetComponent<Rigidbody>();
+        count = 0;
     }
-
+    
     void Update()
     {
-        transform.position += Vector3.up * normalSpeed;
-        switch(gameObject.name)
+        transform.position += Vector3.up * normalSpeed + Vector3.right * attackSpeed;
+
+        switch (gameObject.name) //ちゃんと取得してください
         {
-            case "Player1":
+            case "Player1": //enumでUIから選択できるようにする
                 Height = Mathf.Floor(gameObject.transform.position.y);
-                if (Input.GetKey(KeyCode.LeftArrow))
+                if (Input.GetKey(KeyCode.F))
                 {
-                    AddForce();
+                    Rise();
+                }
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    count = 1 - count;
+                    if (count == 0) { 
+                        Disturb(-0.3f);
+                    }
+                    else
+                    {
+                        Disturb(0.3f);
+                    }
                 }
                 break;
+
             case "Player2":
                 Height = Mathf.Floor(gameObject.transform.position.y);
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(KeyCode.J))
                 {
-                    AddForce();
+                    Rise();
+                }
+                if (Input.GetKeyDown(KeyCode.K))
+                {
+                    count = 1 - count;
+                    if (count == 0)
+                    {
+                        Disturb(0.3f);
+                    }
+                    else
+                    {
+                        Disturb(-0.3f);
+                    }
                 }
                 break;
         }
     }
 
-    public void AddForce()
+    public void Rise()
     {
         rb.AddForce(transform.up * thrust);
     }
-    public void AddForceR()
+
+    public void Disturb(float attack)
     {
-        rb.AddForce(transform.right * thrust);
+        attackSpeed = attack;
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        switch(collision.gameObject.tag)
+        {
+            case "RightWall":
+                Disturb(0);
+                break;
+
+            case "LeftWall":
+                Disturb(0);
+                break;
+
+            case "Player":
+
+                break;
+        }
     }
 }

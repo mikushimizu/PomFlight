@@ -14,8 +14,7 @@ public class JoyconReader : MonoBehaviour
 	private Joycon.Button? m_pressedButtonL;
 	private Joycon.Button? m_pressedButtonR;
     public static int[] v_count = new int [2];
-    public static int h_countL;
-    public static int h_countR;
+	public static int[] h_count = new int[2];
 
     public Player[] player = new Player[2];
 
@@ -25,6 +24,7 @@ public class JoyconReader : MonoBehaviour
         for(int i=0; i<v_count.Length; i++)
         {
             v_count[i] = 0;
+			h_count[i] = 0;
         }
     }
 
@@ -97,7 +97,7 @@ public class JoyconReader : MonoBehaviour
 			var gyro = joycon.GetGyro();
 			var accel = joycon.GetAccel();
 			var orientation = joycon.GetVector();
-
+            /*
 			GUILayout.BeginVertical(GUILayout.Width(480));
 			GUILayout.Label(name);
 			GUILayout.Label(key + "：振動");
@@ -105,25 +105,45 @@ public class JoyconReader : MonoBehaviour
 			GUILayout.Label(string.Format("スティック：({0}, {1})", stick[0], stick[1]));
 			GUILayout.Label("ジャイロ：" + gyro);
 			GUILayout.Label("加速度：" + accel);
+            */
             if(accel.x >= 3.0f) //加速度が3.0f以上のときジョイコンをしっかり振ったと判定
             {
                 switch (name)
                 {
                     case "Joy-Con (L)":
                         v_count[0]++;
-                        player[0].gameObject.GetComponent<Player>().AddForce();
+                        player[0].gameObject.GetComponent<Player>().Rise();
                         break;
 
                     case "Joy-Con (R)":
                         v_count[1]++;
-                        player[1].gameObject.GetComponent<Player>().AddForce();
+                        player[1].gameObject.GetComponent<Player>().Rise();
                         break;
                 }
             }
+			if (accel.y >= 4.0f) //加速度が3.0f以上のときジョイコンをしっかり振ったと判定
+			{
+				switch (name)
+				{
+					case "Joy-Con (L)":
+						h_count[0]++;
+						Debug.Log("h_countL:" + h_count[0]);
+						//player[0].gameObject.GetComponent<Player>().Rise();
+						break;
+
+					case "Joy-Con (R)":
+						h_count[1]++;
+						Debug.Log("h_countR:" + h_count[1]);
+						//player[1].gameObject.GetComponent<Player>().Rise();
+						break;
+				}
+			}
+			/*
             GUILayout.Label("傾き：" + orientation);
 			GUILayout.EndVertical();
+            */
 		}
-		GUILayout.EndHorizontal();
+		//GUILayout.EndHorizontal();
 	}
 
 	private void SetControllers()
