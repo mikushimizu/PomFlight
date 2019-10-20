@@ -1,4 +1,4 @@
-﻿Shader "Gradation" {
+﻿Shader "StartBarGradation" {
     Properties{
         _TopColor("Top Color", Color) = (1,1,1,1)
         _ButtomColor("Buttom Color", Color) = (1,1,1,1)
@@ -47,7 +47,7 @@
                 return o;
             }
             fixed4 frag(v2f i) : COLOR{
-                fixed amount = clamp(abs(_TopColorPos - i.uv.y) + (0.5 - _TopColorAmount), 0, 1);
+                fixed amount = clamp(abs(_TopColorPos - i.uv.x) + (0.5 - _TopColorAmount), 0, 1);
                 i.color = lerp(_TopColor, _ButtomColor, amount);
 
                 return i.color;

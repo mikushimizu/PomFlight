@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainUIManager : MonoBehaviour {
     public Text[] heightText = new Text [2];
@@ -26,6 +27,10 @@ public class MainUIManager : MonoBehaviour {
         {
             heightText[i].text = playerCs[i].Height.ToString() + " m";
             starScoreText[i].text = playerCs[i].StarScore.ToString() + " 個";
+        }
+        if (MainUIManager.second < 0)
+        {
+            SceneManager.LoadScene("Result");
         }
     }
 }

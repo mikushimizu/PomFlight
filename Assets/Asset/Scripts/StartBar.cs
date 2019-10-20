@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StartBar : MonoBehaviour {
     private Slider slider;
@@ -46,5 +47,10 @@ public class StartBar : MonoBehaviour {
                 }
                 break;
         }
-	}
+
+        if(StartBar.isAble[0] && StartBar.isAble[1])
+        {
+            SceneManager.LoadScene("Main");
+        }
+    }
 }
