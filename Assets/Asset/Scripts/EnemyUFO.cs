@@ -8,11 +8,14 @@ public class EnemyUFO : MonoBehaviour {
     private float defaultThrust;
     private float speed;
     private int direction;
+    public AudioClip crash;
+    AudioSource audioSource;
 
     private void Start()
     {
         speed = 0.4f;
         direction = 1;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -32,6 +35,7 @@ public class EnemyUFO : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             //エフェクトを出す
+            audioSource.PlayOneShot(crash);
             player = other.gameObject.GetComponent<Player>();
             defaultSpeed = player.normalSpeed;
             defaultThrust = player.thrust;
