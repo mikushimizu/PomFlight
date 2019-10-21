@@ -27,7 +27,7 @@ public class StartBar : MonoBehaviour {
                 {
                     isAble[0] = true;
                 }
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                if (Input.GetKeyDown(KeyCode.F))
                 {
                     JoyconReader.v_count[0]++;
                 }
@@ -41,7 +41,7 @@ public class StartBar : MonoBehaviour {
                 {
                     isAble[1] = true;
                 }
-                if (Input.GetKeyDown(KeyCode.RightArrow))
+                if (Input.GetKeyDown(KeyCode.J))
                 {
                     JoyconReader.v_count[1]++;
                 }

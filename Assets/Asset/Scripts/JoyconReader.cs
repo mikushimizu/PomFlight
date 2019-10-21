@@ -105,8 +105,10 @@ public class JoyconReader : MonoBehaviour
 			GUILayout.Label(string.Format("スティック：({0}, {1})", stick[0], stick[1]));
 			GUILayout.Label("ジャイロ：" + gyro);
 			GUILayout.Label("加速度：" + accel);
+            GUILayout.Label("傾き：" + orientation);
+			GUILayout.EndVertical();
             */
-            if(accel.x >= 3.0f) //加速度が3.0f以上のときジョイコンをしっかり振ったと判定
+            if (accel.x >= 3.0f) //縦 加速度が3.0f以上のときジョイコンをしっかり振ったと判定
             {
                 switch (name)
                 {
@@ -121,27 +123,23 @@ public class JoyconReader : MonoBehaviour
                         break;
                 }
             }
-			if (accel.y >= 4.0f) //加速度が3.0f以上のときジョイコンをしっかり振ったと判定
+			if (accel.z >= 4.0f) //横 加速度が3.0f以上のときジョイコンをしっかり振ったと判定
 			{
 				switch (name)
 				{
 					case "Joy-Con (L)":
 						h_count[0]++;
 						Debug.Log("h_countL:" + h_count[0]);
-						//player[0].gameObject.GetComponent<Player>().Rise();
+                        player[0].gameObject.GetComponent<Player>().Disturb(0);
 						break;
 
 					case "Joy-Con (R)":
 						h_count[1]++;
 						Debug.Log("h_countR:" + h_count[1]);
-						//player[1].gameObject.GetComponent<Player>().Rise();
+                        player[1].gameObject.GetComponent<Player>().Disturb(1);
 						break;
 				}
 			}
-			/*
-            GUILayout.Label("傾き：" + orientation);
-			GUILayout.EndVertical();
-            */
 		}
 		//GUILayout.EndHorizontal();
 	}

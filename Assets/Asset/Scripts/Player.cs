@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     private Rigidbody rb;
     private float height;
     private int starScore;
-    private int count;
+    private int[] count = new int[2];
 
 
     public float Height
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
         get { return height; }
         set { height = value; }
     }
+
     public int StarScore
     {
         get { return starScore; }
@@ -29,7 +30,10 @@ public class Player : MonoBehaviour {
         normalSpeed = 0.05f;
         attackSpeed = 0.00f;
         rb = GetComponent<Rigidbody>();
-        count = 0;
+        for(int i=0; i<count.Length; i++)
+        {
+            count[i] = 0;
+        }
     }
     
     void Update()
@@ -46,14 +50,7 @@ public class Player : MonoBehaviour {
                 }
                 if (Input.GetKeyDown(KeyCode.D))
                 {
-                    count = 1 - count;
-                    if (count == 0) { 
-                        Disturb(-0.3f);
-                    }
-                    else
-                    {
-                        Disturb(0.3f);
-                    }
+                    Disturb(0);
                 }
                 break;
 
@@ -65,15 +62,7 @@ public class Player : MonoBehaviour {
                 }
                 if (Input.GetKeyDown(KeyCode.K))
                 {
-                    count = 1 - count;
-                    if (count == 0)
-                    {
-                        Disturb(0.3f);
-                    }
-                    else
-                    {
-                        Disturb(-0.3f);
-                    }
+                    Disturb(1);
                 }
                 break;
         }
@@ -84,9 +73,37 @@ public class Player : MonoBehaviour {
         rb.AddForce(transform.up * thrust);
     }
 
-    public void Disturb(float attack)
+    public void Attack(float attack)
     {
         attackSpeed = attack;
+    }
+
+    public void Disturb(int i)
+    {
+        //i=0,1
+        count[i] = 1 - count[i];
+        if (count[i] == 0)
+        {
+            if(i == 0){
+                Attack(-0.3f);
+            }
+            else
+            {
+                Attack(0.3f);
+            }
+            
+        }
+        else
+        {
+            if (i == 0)
+            {
+                Attack(0.3f);
+            }
+            else
+            {
+                Attack(-0.3f);
+            }
+        }
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -94,15 +111,22 @@ public class Player : MonoBehaviour {
         switch(collision.gameObject.tag)
         {
             case "RightWall":
-                Disturb(0);
+                Attack(0);
                 break;
 
             case "LeftWall":
-                Disturb(0);
+                Attack(0);
                 break;
 
             case "Player":
-
+                if(collision.transform.position.y > transform.position.y)
+                {
+                    if(collision.gameObject.GetComponent<Player>().starScore > 0)
+                    {
+                        collision.gameObject.GetComponent<Player>().starScore -= 1;
+                        GetComponent<Player>().starScore += 1;
+                    }
+                }
                 break;
         }
     }
