@@ -25,8 +25,8 @@ public class MainUIManager : MonoBehaviour {
         second--;
         for (int i = 0; i < player.Length; i++)
         {
-            heightText[i].text = playerCs[i].Height.ToString() + " m";
-            starScoreText[i].text = playerCs[i].StarScore.ToString() + " 個";
+            heightText[i].text = playerCs[i].Height.ToString() + "M";
+            starScoreText[i].text = "★" + playerCs[i].StarScore.ToString();
         }
         if (MainUIManager.second < 0)
         {
