@@ -14,7 +14,7 @@ public class JoyconReader : MonoBehaviour
 	private Joycon.Button? m_pressedButtonL;
 	private Joycon.Button? m_pressedButtonR;
     public static int[] v_count = new int [2];
-	public static int[] h_count = new int[2];
+    public static bool[] isShake = new bool[2];
 
     public Player[] player = new Player[2];
 
@@ -24,7 +24,7 @@ public class JoyconReader : MonoBehaviour
         for(int i=0; i<v_count.Length; i++)
         {
             v_count[i] = 0;
-			h_count[i] = 0;
+			isShake[i] = false;
         }
     }
 
@@ -60,6 +60,20 @@ public class JoyconReader : MonoBehaviour
 		{
 			m_joyconR.SetRumble(160, 320, 0.6f, 200);
 		}
+
+        for(int i=0; i<isShake.Length; i++) 
+        {
+            if (isShake[i])
+            {
+                SendDisturb(i);
+            }
+        }
+        
+    }
+
+    private void SendDisturb(int i) //攻撃時一度だけ呼ぶ関数
+    {
+        player[i].gameObject.GetComponent<Player>().Disturb(i);
     }
 
 	private void OnGUI()
@@ -123,23 +137,33 @@ public class JoyconReader : MonoBehaviour
                         break;
                 }
             }
-			if (accel.z >= 4.0f) //横 加速度が3.0f以上のときジョイコンをしっかり振ったと判定
+			if (accel.z >= 3.0f) //横 加速度が3.0f以上のときジョイコンをしっかり振ったと判定
 			{
 				switch (name)
 				{
 					case "Joy-Con (L)":
-						h_count[0]++;
-						Debug.Log("h_countL:" + h_count[0]);
-                        player[0].gameObject.GetComponent<Player>().Disturb(0);
+                        isShake[0] = true;
+                        
 						break;
 
 					case "Joy-Con (R)":
-						h_count[1]++;
-						Debug.Log("h_countR:" + h_count[1]);
-                        player[1].gameObject.GetComponent<Player>().Disturb(1);
+                        isShake[1] = true;
 						break;
 				}
-			}
+            }
+            else
+            {
+                switch (name)
+                {
+                    case "Joy-Con (L)":
+                        isShake[0] = false;
+                        break;
+
+                    case "Joy-Con (R)":
+                        isShake[1] = false;
+                        break;
+                }
+            }
 		}
 		//GUILayout.EndHorizontal();
 	}

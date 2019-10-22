@@ -11,9 +11,10 @@ public class MainUIManager : MonoBehaviour {
     public GameObject[] player = new GameObject [2];
     private Player[] playerCs = new Player[2];
     public static float second;
+    public static float remainingTime;
 
     void Start () {
-        second = 3660;
+        second = 60;
         for(int i = 0; i < player.Length; i++)
         {
             playerCs[i] = player[i].GetComponent<Player>();
@@ -21,14 +22,14 @@ public class MainUIManager : MonoBehaviour {
     }
 	
 	void Update () {
-        timer.text =Mathf.Floor(second/60).ToString();
-        second--;
+        remainingTime = second - Time.time;
+        timer.text =Mathf.Floor(remainingTime).ToString();
         for (int i = 0; i < player.Length; i++)
         {
             heightText[i].text = playerCs[i].Height.ToString() + "M";
             starScoreText[i].text = "★" + playerCs[i].StarScore.ToString();
         }
-        if (MainUIManager.second < 0)
+        if (remainingTime < 1)
         {
             SceneManager.LoadScene("Result");
         }

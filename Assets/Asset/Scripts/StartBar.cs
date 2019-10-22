@@ -48,9 +48,10 @@ public class StartBar : MonoBehaviour {
                 break;
         }
 
-        if(StartBar.isAble[0] && StartBar.isAble[1])
+        if((StartBar.isAble[0] && StartBar.isAble[1]) || Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("Main");
         }
+
     }
 }

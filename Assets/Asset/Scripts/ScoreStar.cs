@@ -18,7 +18,9 @@ public class ScoreStar : MonoBehaviour {
         {
             audioSource.PlayOneShot(getStar);
             collision.gameObject.GetComponent<Player>().StarScore += point;
-            Destroy(gameObject);
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            Destroy(gameObject, 1.0f);
         }
     }
 }

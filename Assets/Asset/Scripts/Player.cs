@@ -80,6 +80,7 @@ public class Player : MonoBehaviour {
 
     public void Disturb(int i)
     {
+        Debug.Log("邪魔するぜ！！！");
         //i=0,1
         count[i] = 1 - count[i];
         if (count[i] == 0)
