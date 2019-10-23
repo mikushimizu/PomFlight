@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
     public GameObject TargetObject;
     public float Height = 6.0f;
     public float Distance = 30.0f;
@@ -32,14 +33,16 @@ public class CameraController : MonoBehaviour {
 
     private float addX;
 
-    void Start () {
+    void Start()
+    {
         cam = GetComponent<Camera>();
         nowfov = FieldOfView;
         nowPos = TargetObject.transform.position;
     }
-	
-	void Update () {
-		var delta = TargetObject.transform.position - deltaTarget;
+
+    void Update()
+    {
+        var delta = TargetObject.transform.position - deltaTarget;
         deltaTarget = TargetObject.transform.position;
 
         // 減衰
@@ -78,5 +81,5 @@ public class CameraController : MonoBehaviour {
 
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(AngleX + noise.x, noise.y, noise.z), Time.deltaTime * AngleAttenRate);
         transform.position = nowPos + new Vector3(0.0f, Height, -Distance);
-	}
+    }
 }

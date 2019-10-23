@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class StartBar : MonoBehaviour {
     private Slider slider;
     private int[] count = new int [2];
     public static bool[] isAble = new bool[2];
 
-	void Start () {
+    void Start () {
         slider = GetComponent<Slider>();
         for(int i=0; i<count.Length; i++) {
             count[i] = 0;
@@ -47,11 +47,10 @@ public class StartBar : MonoBehaviour {
                 }
                 break;
         }
-
+        /*
         if((StartBar.isAble[0] && StartBar.isAble[1]) || Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("Main");
-        }
-
+        }*/
     }
 }
