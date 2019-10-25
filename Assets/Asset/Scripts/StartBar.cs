@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class StartBar : MonoBehaviour {
     private Slider slider;
     private int[] count = new int [2];
-    public static bool[] isAble = new bool[2];
+//    public static bool[] isAble = new bool[2];
 
     void Start () {
         slider = GetComponent<Slider>();
         for(int i=0; i<count.Length; i++) {
             count[i] = 0;
-            isAble[i] = false;
+            //isAble[i] = false;
         }
 	}
 	
@@ -25,7 +25,7 @@ public class StartBar : MonoBehaviour {
                 slider.value = count[0];
                 if (slider.value >= slider.maxValue)
                 {
-                    isAble[0] = true;
+                    //isAble[0] = true;
                 }
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -39,7 +39,7 @@ public class StartBar : MonoBehaviour {
                 slider.value = count[1];
                 if (slider.value >= slider.maxValue)
                 {
-                    isAble[1] = true;
+                    //isAble[1] = true;
                 }
                 if (Input.GetKeyDown(KeyCode.J))
                 {
@@ -47,10 +47,5 @@ public class StartBar : MonoBehaviour {
                 }
                 break;
         }
-        /*
-        if((StartBar.isAble[0] && StartBar.isAble[1]) || Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("Main");
-        }*/
     }
 }

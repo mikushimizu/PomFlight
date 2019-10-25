@@ -11,10 +11,12 @@ public class MainUIManager : MonoBehaviour {
     public GameObject[] player = new GameObject [2];
     private Player[] playerCs = new Player[2];
     public static float second;
+    public static float elapsedTime;
     public static float remainingTime;
 
     void Start () {
         second = 60;
+        elapsedTime = 0;
         for(int i = 0; i < player.Length; i++)
         {
             playerCs[i] = player[i].GetComponent<Player>();
@@ -22,7 +24,8 @@ public class MainUIManager : MonoBehaviour {
     }
 	
 	void Update () {
-        remainingTime = second - Time.time;
+        elapsedTime += Time.deltaTime;
+        remainingTime = second - elapsedTime;
         timer.text =Mathf.Floor(remainingTime).ToString();
         for (int i = 0; i < player.Length; i++)
         {

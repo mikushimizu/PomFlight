@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class JoyconReader : MonoBehaviour
 {
@@ -128,12 +129,16 @@ public class JoyconReader : MonoBehaviour
                 {
                     case "Joy-Con (L)":
                         v_count[0]++;
-                        player[0].gameObject.GetComponent<Player>().Rise();
+                        if(player[0] != null) {
+                            player[0].gameObject.GetComponent<Player>().Rise();
+                        }
                         break;
 
                     case "Joy-Con (R)":
                         v_count[1]++;
-                        player[1].gameObject.GetComponent<Player>().Rise();
+                        if (player[1] != null){
+                            player[1].gameObject.GetComponent<Player>().Rise();
+                        }
                         break;
                 }
             }
@@ -143,7 +148,6 @@ public class JoyconReader : MonoBehaviour
 				{
 					case "Joy-Con (L)":
                         isShake[0] = true;
-                        
 						break;
 
 					case "Joy-Con (R)":
