@@ -81,7 +81,11 @@ public class Player : MonoBehaviour {
     {
         if (GameManager.battleStart)
         {
-            rb.AddForce(transform.up * thrust);
+            if(rb.velocity.y < 180)
+            {
+                Debug.Log("v:" + rb.velocity);
+                rb.AddForce(transform.up * thrust);
+            }
         }
     }
 
