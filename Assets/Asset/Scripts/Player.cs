@@ -10,12 +10,14 @@ public class Player : MonoBehaviour {
     public int steelStarCount;
     public AudioClip getStar;
     public AudioClip steelStar;
+    public GameObject steelStarParticle;
+    public GameObject steeledStarParticle;
     private AudioSource audioSource;
     private Rigidbody rb;
     private float height;
     private int starScore;
     private int[] count = new int[2];
-
+    private Vector3 particlePosition;
 
     public float Height
     {
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour {
         normalSpeed = 0.05f;
         attackSpeed = 0.00f;
         steelStarCount = 3;
+        particlePosition = new Vector3(0, 5, -1);
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         for (int i=0; i<count.Length; i++)
@@ -141,7 +144,9 @@ public class Player : MonoBehaviour {
                     if(collision.gameObject.GetComponent<Player>().starScore > steelStarCount)
                     {
                         collision.gameObject.GetComponent<Player>().starScore -= steelStarCount;
+                        Instantiate(steeledStarParticle, collision.gameObject.transform.position + particlePosition, collision.gameObject.transform.rotation);
                         GetComponent<Player>().starScore += steelStarCount;
+                        Instantiate(steelStarParticle, transform.position + particlePosition, transform.rotation);
                         audioSource.PlayOneShot(steelStar);
                     }
                 }

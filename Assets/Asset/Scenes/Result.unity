@@ -275,6 +275,13 @@ MonoBehaviour:
   starScoreText:
   - {fileID: 1771259590}
   - {fileID: 16568659}
+  pomumiImage:
+  - {fileID: 1889374179}
+  - {fileID: 660498321}
+  pomumiExcellent: {fileID: 21300000, guid: f9b1e63b10f434af29c67357eb058d7e, type: 3}
+  pomumiVeryGood: {fileID: 21300000, guid: 0ec4850b5c47f458fad89734058bd3fb, type: 3}
+  pomumiGood: {fileID: 21300000, guid: 806733271ec5445e7927e9863db84589, type: 3}
+  pomumiBad: {fileID: 21300000, guid: 4d25e70971e354a4ca258288d58fa30e, type: 3}
 --- !u!4 &42220162
 Transform:
   m_ObjectHideFlags: 0
@@ -1331,7 +1338,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4d25e70971e354a4ca258288d58fa30e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3736,7 +3743,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f9b1e63b10f434af29c67357eb058d7e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
