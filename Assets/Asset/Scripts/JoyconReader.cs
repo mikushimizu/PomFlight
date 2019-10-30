@@ -84,7 +84,7 @@ public class JoyconReader : MonoBehaviour
 
 		if (m_joycons == null || m_joycons.Count <= 0)
 		{
-			GUILayout.Label("Joy-Con が接続されていません");
+			//GUILayout.Label("Joy-Con が接続されていません");
 			return;
 		}
 

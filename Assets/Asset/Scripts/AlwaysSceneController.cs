@@ -12,11 +12,16 @@ public class AlwaysSceneController : MonoBehaviour {
     void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("Main");
+            Invoke("loadMain", 3);
+            TransitionMotionPlayer.hide = 1;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("Start");
         }
+    }
+    void loadMain()
+    {
+        SceneManager.LoadScene("Main");
     }
 }

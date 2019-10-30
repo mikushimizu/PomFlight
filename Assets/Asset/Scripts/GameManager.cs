@@ -14,9 +14,11 @@ public class GameManager : MonoBehaviour {
     public static float elapsedTime;
     public static float remainingTime;
     public static bool battleStart;
+    public AudioClip fanfare;
     public AudioClip countDown;
     public AudioClip pomu_playing;
     private bool isCalledOnce;
+    private bool isCalledOnceCountDown;
     private AudioSource audioSource;
     private float timeCountDown;
 
@@ -24,9 +26,9 @@ public class GameManager : MonoBehaviour {
         second = 60;
         elapsedTime = 0;
         battleStart = false;
-        timeCountDown = 3;
+        timeCountDown = 7; //7秒くらい待つ
         audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(countDown);
+        audioSource.PlayOneShot(fanfare);
         for (int i = 0; i < player.Length; i++)
         {
             playerCs[i] = player[i].GetComponent<Player>();
@@ -38,6 +40,14 @@ public class GameManager : MonoBehaviour {
         {
             if (timeCountDown > 0)
             {
+                if(timeCountDown < 4)
+                {
+                    if (!isCalledOnceCountDown)
+                    {
+                        isCalledOnceCountDown = true;
+                        audioSource.PlayOneShot(countDown);
+                    }
+                }
                 timeCountDown -= Time.deltaTime;
             }
             else
@@ -47,11 +57,10 @@ public class GameManager : MonoBehaviour {
         }
         else //バトル開始
         {
-            //開始直後一度だけ実行する
+            //バトル開始直後一度だけ実行する
             if (!isCalledOnce)
             {
                 isCalledOnce = true;
-
                 audioSource.PlayOneShot(pomu_playing);
             }
 
