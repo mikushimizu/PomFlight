@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RightWall
   - LeftWall
+  - Star
   layers:
   - Default
   - TransparentFX

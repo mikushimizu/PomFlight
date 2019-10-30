@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 82593584435272146}
   m_Layer: 0
   m_Name: ScoreStar
-  m_TagString: Untagged
+  m_TagString: Star
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -212,4 +212,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360ee3d287b924798ad69e68faaeb2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getStar: {fileID: 8300000, guid: ba2792839b24944b5a3c2398725630f5, type: 3}

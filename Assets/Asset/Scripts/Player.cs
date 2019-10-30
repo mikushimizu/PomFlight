@@ -7,6 +7,10 @@ public class Player : MonoBehaviour {
     public float thrust;
     public float normalSpeed;
     public float attackSpeed;
+    public int steelStarCount;
+    public AudioClip getStar;
+    public AudioClip steelStar;
+    private AudioSource audioSource;
     private Rigidbody rb;
     private float height;
     private int starScore;
@@ -29,8 +33,10 @@ public class Player : MonoBehaviour {
         thrust = 1f;
         normalSpeed = 0.05f;
         attackSpeed = 0.00f;
+        steelStarCount = 3;
         rb = GetComponent<Rigidbody>();
-        for(int i=0; i<count.Length; i++)
+        audioSource = GetComponent<AudioSource>();
+        for (int i=0; i<count.Length; i++)
         {
             count[i] = 0;
         }
@@ -70,7 +76,10 @@ public class Player : MonoBehaviour {
 
     public void Rise()
     {
-        rb.AddForce(transform.up * thrust);
+        if (GameManager.battleStart)
+        {
+            rb.AddForce(transform.up * thrust);
+        }
     }
 
     public void Attack(float attack)
@@ -80,29 +89,32 @@ public class Player : MonoBehaviour {
 
     public void Disturb(int i)
     {
-        Debug.Log("邪魔するぜ！！！");
-        //i=0,1
-        count[i] = 1 - count[i];
-        if (count[i] == 0)
+        if (GameManager.battleStart)
         {
-            if(i == 0){
-                Attack(-0.3f);
-            }
-            else
+            count[i] = 1 - count[i];
+            switch (count[i])
             {
-                Attack(0.3f);
-            }
-            
-        }
-        else
-        {
-            if (i == 0)
-            {
-                Attack(0.3f);
-            }
-            else
-            {
-                Attack(-0.3f);
+                case 0:
+                    if (i == 0)
+                    {
+                        Attack(-0.3f);
+                    }
+                    else
+                    {
+                        Attack(0.3f);
+                    }
+                    break;
+
+                case 1:
+                    if (i == 0)
+                    {
+                        Attack(0.3f);
+                    }
+                    else
+                    {
+                        Attack(-0.3f);
+                    }
+                    break;
             }
         }
     }
@@ -111,6 +123,10 @@ public class Player : MonoBehaviour {
     {
         switch(collision.gameObject.tag)
         {
+            case "Star":
+                audioSource.PlayOneShot(getStar);
+                break;
+
             case "RightWall":
                 Attack(0);
                 break;
@@ -122,10 +138,11 @@ public class Player : MonoBehaviour {
             case "Player":
                 if(collision.transform.position.y > transform.position.y)
                 {
-                    if(collision.gameObject.GetComponent<Player>().starScore > 0)
+                    if(collision.gameObject.GetComponent<Player>().starScore > steelStarCount)
                     {
-                        collision.gameObject.GetComponent<Player>().starScore -= 1;
-                        GetComponent<Player>().starScore += 1;
+                        collision.gameObject.GetComponent<Player>().starScore -= steelStarCount;
+                        GetComponent<Player>().starScore += steelStarCount;
+                        audioSource.PlayOneShot(steelStar);
                     }
                 }
                 break;
