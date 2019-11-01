@@ -123,6 +123,7 @@ public class JoyconReader : MonoBehaviour
             GUILayout.Label("傾き：" + orientation);
 			GUILayout.EndVertical();
             */
+            GUILayout.Label("押されているボタン：" + button);
             if (accel.x >= 3.0f) //縦 加速度が3.0f以上のときジョイコンをしっかり振ったと判定
             {
                 switch (name)

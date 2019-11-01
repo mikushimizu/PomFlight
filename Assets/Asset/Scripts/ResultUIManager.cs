@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ResultUIManager : MonoBehaviour {
     public Text[] starScoreText = new Text[2];
@@ -19,7 +20,7 @@ public class ResultUIManager : MonoBehaviour {
 
     void Update()
     {
-        for(int i=0; i<scoreManager.score.Length; i++)
+        for (int i=0; i<scoreManager.score.Length; i++)
         {
             starScoreText[i].text = "★" + scoreManager.score[i].ToString() + "コ";
             if(scoreManager.score[i] < 10)

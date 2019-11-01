@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
     private float timeCountDown;
 
     void Start () {
-        second = 60;
+        second = 10;
         elapsedTime = 0;
         battleStart = false;
         timeCountDown = 7; //7秒くらい待つ
