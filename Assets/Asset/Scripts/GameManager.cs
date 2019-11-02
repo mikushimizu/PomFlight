@@ -17,13 +17,14 @@ public class GameManager : MonoBehaviour {
     public AudioClip fanfare;
     public AudioClip countDown;
     public AudioClip pomu_playing;
+    public GameObject ScoreManager;
     private bool isCalledOnce;
     private bool isCalledOnceCountDown;
     private AudioSource audioSource;
     private float timeCountDown;
 
     void Start () {
-        second = 10;
+        second = 60;
         elapsedTime = 0;
         battleStart = false;
         timeCountDown = 7; //7秒くらい待つ

@@ -318,7 +318,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100030, guid: 48e9c9bd86f7da348b5d2de6ed29cc9a, type: 3}
       propertyPath: m_Name
-      value: Player2
+      value: pomu2
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 48e9c9bd86f7da348b5d2de6ed29cc9a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1082,7 +1082,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100030, guid: 48e9c9bd86f7da348b5d2de6ed29cc9a, type: 3}
       propertyPath: m_Name
-      value: Player1
+      value: pomu1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48e9c9bd86f7da348b5d2de6ed29cc9a, type: 3}

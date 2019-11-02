@@ -47,7 +47,8 @@ public class Player : MonoBehaviour {
     
     void Update()
     {
-        transform.position += Vector3.up * normalSpeed + Vector3.right * attackSpeed;
+        Vector3 pos = transform.position + Vector3.up * normalSpeed + Vector3.right * attackSpeed;
+        transform.position = new Vector3(Mathf.Clamp(pos.x, -10, 10), Mathf.Clamp(pos.y, 0, 10000), 0);
 
         switch (gameObject.name) //ちゃんと取得してください
         {
