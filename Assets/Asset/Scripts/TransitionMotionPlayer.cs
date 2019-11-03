@@ -71,7 +71,7 @@ public class TransitionMotionPlayer : MonoBehaviour {
         if (passtime <= 0.0)
         {
             passtime = 0.05f;
-            if (counter < sprites.Length)
+            if (counter < sprites.Length/2)
             {
                 image.sprite = sprites[counter + sprites.Length/2];
                 counter++;

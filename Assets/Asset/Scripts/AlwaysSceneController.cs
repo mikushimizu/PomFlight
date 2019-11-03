@@ -15,7 +15,7 @@ public class AlwaysSceneController : MonoBehaviour {
         {
             Invoke("loadMain", 3);
             TransitionMotionPlayer.hide = 1;
-            SceneManager.LoadScene("Main");
+            //SceneManager.LoadScene("Main");
         }
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKey(KeyCode.Joystick1Button12))
         {
